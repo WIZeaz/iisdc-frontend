@@ -8,7 +8,7 @@ import utils from './utils/utils.js'
 
 //设置axiosInstace实现访问后端
 const axiosInstance = axios.create({
-    baseURL:'http://localhost:8080',
+    baseURL:'http://wizeaz.top:8080/',
     headers: {'Content-Type': 'application/json;charset=utf-8'},// 设置传输内容的类型和编码
     withCredentials: true,// 指定某个请求应该发送凭据。允许客户端携带跨域cookie，也需要此配置
 });
