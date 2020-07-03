@@ -31,6 +31,24 @@ Vue.prototype.checkLogin=function (sCallback,fCallback){
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+
+function buildOptions(node){
+    let option={label:node.name,value:node.deptId};
+    if (node.children.length>0){
+        option.children=[];
+        for (let i=0;i<node.children.length;++i){
+            option.children.push(buildOptions(node.children[i]));
+        }
+    }
+    return option;
+}
+
+function getShowName(node){
+    if (node.showName) return node.showName;
+    if (node.parent) return getShowName(node.parent)+'/'+node.name;
+    return node.name;
+}
+
 new Vue({
   router,
   render: h => h(App),
@@ -38,9 +56,11 @@ new Vue({
   data:{
       origins:[],
       diseases:[],
-      departments:{}
+      departments:{},
+      departmentOptions:{},
+      status:['疑似','确诊','死亡','康复']
   },
-  mounted(){
+  created(){
       this.$ajax({
           url:'/origin',
           method:'get'
@@ -64,8 +84,20 @@ new Vue({
               let departments=res.data.departments;
               for (let i=0;i<departments.length;++i){
                   this.departments[departments[i].deptId]=departments[i];
+                  this.departments[departments[i].deptId].children=[];
               }
+              let root;
+              for (let i in this.departments){
+                  if (this.departments[i].parentId){
+                      this.departments[this.departments[i].parentId].children.push(this.departments[i]);
+                      this.departments[i].parent=this.departments[this.departments[i].parentId];
+                  }
+                  else root=i;
+                  this.departments[i].showName=getShowName(this.departments[i]);
+              }
+              this.departmentOptions=[buildOptions(this.departments[root])];
               console.log(this.departments);
+              console.log(this.departmentOptions);
           }
       })
       
