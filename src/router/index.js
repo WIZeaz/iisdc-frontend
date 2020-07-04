@@ -17,7 +17,7 @@ Vue.use(VueRouter)
     component: Home,
     children:[
         {
-          path: 'dashboard',
+          path:'dashboard',
           name:'dashboard',
           component: Dashboard
         },

@@ -58,6 +58,7 @@ new Vue({
       diseases:[],
       departments:{},
       departmentOptions:{},
+      groups:['user','manageuser','superuser'],
       status:['疑似','确诊','死亡','康复']
   },
   created(){
