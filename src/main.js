@@ -23,14 +23,17 @@ const axiosInstance = axios.create({
 //注册全局方法
 Vue.prototype.utils=utils;
 Vue.prototype.$ajax=axiosInstance
-Vue.prototype.checkLogin=function (sCallback,fCallback){
+Vue.prototype.checkLogin=function (sCallback){
     axiosInstance({
         url:'/validate',
         method:'post'
     }).then((res)=>{
         let data=res.data;
         if (data.success) sCallback&&sCallback(data.user);
-        else fCallback&&fCallback(data);
+        else{
+            this.$confirm("登录超时,点击确定按钮重新登录")
+            .then(()=>{this.$router.push('/'); console.debug(data);});
+        }
     })
 }
 

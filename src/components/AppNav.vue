@@ -2,7 +2,7 @@
    <div>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router >
       <el-menu-item>大学疾病直报系统后台</el-menu-item>
-      <el-menu-item index="/home/dashboard">仪表盘</el-menu-item>
+      <!--<el-menu-item index="/home/dashboard">仪表盘</el-menu-item>-->
       <el-menu-item index="/home/management">部门管理</el-menu-item>
       <el-menu-item index="/home/analyse">数据统计</el-menu-item>
       <el-menu-item class="rightmost" @click="logout">退出登录</el-menu-item>
@@ -33,7 +33,7 @@
                 url:'/logout',
                 method:'post'
             }).then(()=>{
-                this.$router.push('/login');
+                this.$router.push('/');
             })
         }
       }

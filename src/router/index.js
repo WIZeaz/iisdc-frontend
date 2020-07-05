@@ -53,7 +53,7 @@ Vue.use(VueRouter)
     ]
   },
   {
-    path:'/login',
+    path:'/',
     name:'login',
     component:Login
   },

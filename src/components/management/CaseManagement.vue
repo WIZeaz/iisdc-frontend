@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-button type="primary" size="mini" @click="openDocumentDialog"> 创建案例 </el-button>
+        <el-button type="primary" size="mini" @click="openDocumentDialog" style="float: left; margin-left: 1rem;"> 创建案例 </el-button>
         <el-table
           :data="documents"
           style="width: 100%" stripe>
@@ -28,6 +28,13 @@
               <el-select v-model="newDocument.diseaseName" placeholder="请选择疾病">
                 <el-option :label="disease" :value="disease" :key="disease" v-for="disease in $root.$data.diseases"></el-option>
               </el-select>
+            </el-form-item>
+            <el-form-item label="部门" label-width="formLabelWidth" >
+              <el-cascader placeholder="输入搜索内容"
+                  :options="this.$root.$data.departmentOptions"
+                  :props="{ checkStrictly: true }"
+                  v-model="newDocument.deptId"
+                  clearable filterable></el-cascader>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -65,8 +72,8 @@ export default{
           this.newDocument={patientId:'',disease:'',deptId:'',userId:''};
       },
       addDocument(){
-          this.newDocument.deptId=this.user.deptId;
           this.newDocument.userId=this.user.userId;
+          if (this.newDocument.deptId instanceof Array) this.newDocument.deptId=this.newDocument.deptId[this.newDocument.deptId.length-1];
           console.log(this.newDocument);
           this.$ajax({
               url:'/document',

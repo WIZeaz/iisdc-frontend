@@ -25,9 +25,6 @@
       mounted() {
           this.checkLogin((user)=>{
               this.user=user
-          },(data)=>{
-              this.$confirm("登录超时,点击确定按钮重新登录")
-              .then(()=>{this.$router.push('/login'); console.debug(data);} )
           })
       }
     }
