@@ -15,7 +15,6 @@
                 </template>
             </el-table-column>
         </el-table>
-        
         <el-dialog title="修改用户资料" :visible.sync="groupDialog">
           <el-form>
             <el-form-item label="权限等级" label-width="formLabelWidth">

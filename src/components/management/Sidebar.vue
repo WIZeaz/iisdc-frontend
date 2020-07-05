@@ -1,8 +1,9 @@
 <template>
-    <el-aside width="200px" style="height: 100%;">
+    <el-aside width="200px" style="min-height: 100%;">
         <el-menu router
               default-active="2"
               class="el-menu-vertical-demo"
+              style="min-height: 100%; overflow: visible;"
               @open="handleOpen"
               @close="handleClose"
               background-color="#545c64"

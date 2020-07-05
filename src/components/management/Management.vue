@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+   <el-container style="min-height: 100%;">
       <sidebar></sidebar>
       <el-main>
           <router-view></router-view>
